@@ -1,7 +1,9 @@
-import requests, json, threading
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+import requests
+import threading
+# from PyQt5.QtGui import *
+# from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
 
 class WorkWithReq(QObject):
     for_progress_bar = pyqtSignal(int)
@@ -18,11 +20,11 @@ class WorkWithReq(QObject):
         if response.status_code == 200:
             product_data = response.json()
             self.all_data[i] = product_data
-        progress_perc = int((len(self.all_data) / self.num_products) * 100)
-        self.for_progress_bar.emit(progress_perc)
+        progress_percentage = int((len(self.all_data) / self.num_products) * 100)
+        self.for_progress_bar.emit(progress_percentage)
 
     def run_with_threads(self):
-        threads =[]
+        threads = []
         for i in range(1, self.num_products + 1):
             thread = threading.Thread(target=self.get_data, args=(f"{self.base_url}/{i}", i,))
             thread.start()
@@ -35,6 +37,3 @@ class WorkWithReq(QObject):
         for i in range(1, self.num_products + 1):
             self.get_data(f"{self.base_url}/{i}", i)
         self.results.emit(self.all_data)
-
-    def stop_thread(self):
-        self.stop_thread = True
