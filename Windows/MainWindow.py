@@ -154,7 +154,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Threading APP"))
         self.threads_btn.setText(_translate("MainWindow", "ON"))
         self.label_3.setText(_translate("MainWindow", "Threads:"))
         self.resourse_cb.setCurrentText(_translate("MainWindow", "https://dummyjson.com/products"))
